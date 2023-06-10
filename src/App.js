@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import $ from 'jquery'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+$(document).ready(function(){
+    $(".navbar .nav-link").on('click', function(event) {
 
-export default App;
+        if (this.hash !== "") {
+
+            event.preventDefault();
+
+            var hash = this.hash;
+
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 700, function(){
+                window.location.hash = hash;
+            });
+        } 
+    });
+});
+
+// navbar toggle
+$('#nav-toggle').click(function(){
+    $(this).toggleClass('is-active')
+    $('ul.nav').toggleClass('show');
+});
